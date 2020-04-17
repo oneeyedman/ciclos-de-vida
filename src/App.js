@@ -6,18 +6,19 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log('soy el constructor');
+    
     this.state = {
       initial: ['a','b','c','d','e'],
-      nums: [1,2,3,4]
+      nums: [1,3,4]
     };
   }
 
   componentDidMount() {
+    
     fetch('http://www.mocky.io/v2/5e99dbfd3300003e267b2d10')
       .then(res=>res.json())
       .then(data=>{
-        
+
         this.setState({
           nums: data.nums
         });
@@ -25,7 +26,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('soy el render');
+    
     return (
       <div className="app">
         <Lista 
