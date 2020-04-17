@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
+import Lista from './Lista';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log('soy el constructor');
+    this.state = {
+      initial: ['a','b','c','d','e'],
+      nums: [1,2,3,4]
+    };
+  }
+
+  componentDidMount() {
+    fetch('http://www.mocky.io/v2/5e99dbfd3300003e267b2d10')
+      .then(res=>res.json())
+      .then(data=>{
+        
+        this.setState({
+          nums: data.nums
+        });
+      });
+  }
+
+  render() {
+    console.log('soy el render');
+    return (
+      <div className="app">
+        <Lista 
+          initial={this.state.initial} 
+          nums={this.state.nums} />
+      </div>
+    );
+  }
 }
 
 export default App;
